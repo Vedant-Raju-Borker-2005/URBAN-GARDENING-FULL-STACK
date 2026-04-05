@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= plant.name %> | The Urban Planting</title>
+  <link rel="stylesheet" href="/css/emailphoto.css">
+  <link rel="stylesheet" href="/css/plant.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="name">
+        THE URBAN PLANTING
+      </div>
+      <ul class="nav-links">
+        <li><a href="/plants"><span style='font-size:30px;'>&#8592;</span> Back to Directory</a></li>
+      </ul>
+      <a href="/login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <main class="plant-details container">
+    <h1><%= plant.name %></h1>
+    <p><em><%= plant.scientific_name %></em></p>
+
+    <img class="plant-image" src="<%= plant.image_url || '/images/placeholder.png' %>" alt="<%= plant.name %>" />
+
+    <% if (sections.length === 0) { %>
+      <p>No detailed information available.</p>
+    <% } else { %>
+      <% sections.forEach(s => { %>
+        <section>
+          <h3><%= s.section_name %></h3>
+          <p><%= s.content %></p>
+        </section>
+      <% }) %>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Urban Planting</p>
+  </footer>
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plant Directory | The Urban Planting</title>
+  <link rel="stylesheet" href="./css/emailphoto.css">
+  <link rel="stylesheet" href="/css/plants.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="name">
+        <strong>THE URBAN PLANTING</strong>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="/plants" class="active">Garden</a></li>
+        <li><a href="newgar.html">New to Gardening</a></li>
+        <li><a href="contactus.html">Contact Us</a></li>
+      </ul>
+      <a href="/login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <main class="directory">
+    <h1>Plants A–Z</h1>
+
+    <div class="letters">
+      <% "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(letter => { %>
+        <a href="#<%= letter %>"><%= letter %></a>
+      <% }) %>
+      <!-- jump to the section of the page that has id=alphabet -->
+    </div>
+
+    <!-- for keeping track of which alphabet block we are in -->
+    <% let currentLetter = ""; %>
+    <% plants.forEach(p => { %>
+      <% const firstLetter = p.name[0].toUpperCase(); %>
+      <% if (firstLetter !== currentLetter) { currentLetter = firstLetter; %>
+        <h2 id="<%= firstLetter %>"><%= firstLetter %></h2>
+      <% } %>
+
+      <div class="plant-card">
+        <img src="<%= p.image_url || '/images/placeholder.jpg' %>" alt="<%= p.name %>" />
+        <h3><%= p.name %></h3>
+        <p><em><%= p.scientific_name %></em></p>
+        <a href="/plants/<%= p.id %>">View Details</a>
+        <!-- link to the specific details page by id -->
+      </div>
+    <% }) %>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Urban Planting</p>
+  </footer>
+  <script type="module" src="./js/auth.js"></script>
+</body>
+</html>
